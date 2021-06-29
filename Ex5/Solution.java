@@ -3,6 +3,7 @@ package Ex5;
 
 public class Solution {
     public String convert(String s, int numRows) {
+        if(numRows==1) return s;
         int l = s.length();
         //Define rectangular size
         int unitSize = numRows*2-1;
@@ -12,36 +13,45 @@ public class Solution {
         // (0,-1) (1,1)
         //Fill rectangular
         int idown = 0;
-        int iright = 0;
+        int iright;
+        int icol = 0;
         for(int i = 0; i<l;){
 
             //Down
-            for(idown = 0;idown < numRows-1;idown++){
-                rec[idown][iright] = s.charAt(i);
+            for(idown = 0;idown < numRows;idown++){
+                rec[idown][icol*(numRows-1)] = s.charAt(i);
                 printRec(rec);
-
                 i++;
                 if(i>=l) break;
             }
+            iright = 1;
             //Right
-            for(idown = numRows - 1;i<l && idown > 0;idown--){
-                rec[idown][iright] = s.charAt(i);
+            for(idown = numRows - 2;i<l && idown > 0;idown--){
+                rec[idown][icol*(numRows-1)+iright] = s.charAt(i);
                 printRec(rec);
-
                 iright++;
                 i++;
                 if(i>=l) break;
             }
+            icol++;
         }
-        //Read and parse return string
-
         
-        return "";
+        //Read and parse return string
+        StringBuffer sb = new StringBuffer();
+        for (Character[] characters : rec) {
+            for (Character c : characters) {
+                if(c != null) {
+                    sb.append(c);
+                }
+            }
+        }
+        // printRec(rec);
+        return sb.toString();
     }
     public static void main(String[] args) {
-        String s = "HaveANiceDay!";
+        String s = "PAYPALISHIRING";
         Solution sol = new Solution();
-        System.out.println(sol.convert(s,4));
+        System.out.println(sol.convert(s,1));
     }
 
     private void printRec(Character[][] rec){
