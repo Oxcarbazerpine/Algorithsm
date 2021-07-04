@@ -26,6 +26,7 @@ public class Solution {
             }
             iright = 1;
             //Right
+            // Some Commet here for git test
             for(idown = numRows - 2;i<l && idown > 0;idown--){
                 rec[idown][icol*(numRows-1)+iright] = s.charAt(i);
                 printRec(rec);
