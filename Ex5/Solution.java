@@ -20,7 +20,7 @@ public class Solution {
             //Down
             for(idown = 0;idown < numRows;idown++){
                 rec[idown][icol*(numRows-1)] = s.charAt(i);
-                printRec(rec);
+                // printRec(rec);
                 i++;
                 if(i>=l) break;
             }
@@ -29,7 +29,7 @@ public class Solution {
             // Some Commet here for git test
             for(idown = numRows - 2;i<l && idown > 0;idown--){
                 rec[idown][icol*(numRows-1)+iright] = s.charAt(i);
-                printRec(rec);
+                // printRec(rec);
                 iright++;
                 i++;
                 if(i>=l) break;
